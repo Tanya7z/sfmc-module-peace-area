@@ -1,0 +1,23 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/DogeLakeDev/ScriptsForMinecraftServer@latest/modules/sdk/%40sfmc-sdk/schemas/sapi-manifest.v2.schema.json",
+  "schemaVersion": 2,
+  "id": "peace-area",
+  "name": "和平区域",
+  "configKey": "peace_area",
+  "enabledByDefault": true,
+  "canDisable": true,
+  "requires": ["area"],
+  "permissions": [
+    "config:read:peace_area",
+    "service:area.registerFeature",
+    "service:area.byPoint"
+  ],
+  "services": {
+    "provides": [],
+    "requires": [
+      { "name": "area.registerFeature" },
+      { "name": "area.byPoint" }
+    ]
+  },
+  "notes": "挂接 area.registerFeature(peace)；entitySpawn + onTick 拦截怪物；铁傀儡/雪傀儡/友好/宠物豁免。"
+}

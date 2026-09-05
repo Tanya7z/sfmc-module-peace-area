@@ -1,0 +1,7 @@
+{
+  "target_families": ["monster"],
+  "exclude_entities": [
+    "minecraft:iron_golem",
+    "minecraft:snow_golem"
+  ]
+}
