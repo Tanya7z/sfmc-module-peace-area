@@ -37,9 +37,8 @@ let peaceConfig: PeaceConfig = normalizeConfig(null);
 /** 读取实体族群；组件缺失时返回空数组。 */
 function readFamilies(entity: Entity): string[] {
   try {
-    const comp = entity.getComponent(
-      EntityTypeFamilyComponent.componentId,
-    ) as EntityTypeFamilyComponent | undefined;
+    const comp = entity.getComponent(EntityTypeFamilyComponent.componentId) as
+      EntityTypeFamilyComponent | undefined;
     if (!comp) return [];
     return comp.getTypeFamilies();
   } catch {
@@ -51,16 +50,14 @@ function readFamilies(entity: Entity): string[] {
 function readIsTamed(entity: Entity): boolean {
   try {
     const tameable = entity.getComponent("minecraft:tameable") as
-      | { isTamed?: boolean }
-      | undefined;
+      { isTamed?: boolean } | undefined;
     if (tameable?.isTamed) return true;
   } catch {
     /* ignore */
   }
   try {
     const mount = entity.getComponent("minecraft:tamemount") as
-      | { isTamed?: boolean }
-      | undefined;
+      { isTamed?: boolean } | undefined;
     if (mount?.isTamed) return true;
   } catch {
     /* ignore */
@@ -71,7 +68,8 @@ function readIsTamed(entity: Entity): boolean {
 /** 统一判定并安全 remove。 */
 function tryRemoveIfHostile(entity: Entity): boolean {
   if (!entity.isValid) return false;
-  const isPlayer = entity instanceof Player || entity.typeId === "minecraft:player";
+  const isPlayer =
+    entity instanceof Player || entity.typeId === "minecraft:player";
   const remove = shouldRemoveEntity({
     typeId: entity.typeId,
     families: readFamilies(entity),
@@ -179,9 +177,6 @@ ModuleRegistry.register({
   lifecycle: {
     registerPermissions() {
       // 无玩家命令面
-    },
-    registerCommands() {
-      // 无
     },
     registerEvents() {
       const cb = world.afterEvents.entitySpawn.subscribe((ev) => {
