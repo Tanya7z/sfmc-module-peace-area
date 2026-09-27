@@ -7,9 +7,9 @@ Wave C official SFMC module: **peace-area**（和平区域怪物拦截）.
 ## Develop
 
 ```bash
-npm install
-npm run typecheck
-npm test
+pnpm install
+pnpm run typecheck
+pnpm run test
 ```
 
 Install into platform:
